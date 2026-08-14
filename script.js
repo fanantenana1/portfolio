@@ -110,7 +110,7 @@ function createTextTexture(text) {
     return new THREE.CanvasTexture(canvas);
 }
 
-const codeSymbols = ['</>', '{..}', '0011', 'AI', 'IoT','CSS','Bot'];
+const codeSymbols = ['</>', '{..}', '0011', 'AI', 'IoT', 'CSS', 'Bot'];
 const codeGroup = new THREE.Group();
 
 codeSymbols.forEach((sym) => {
