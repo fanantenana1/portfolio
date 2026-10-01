@@ -1,29 +1,25 @@
-// --- 1. CHANGEMENT AUTOMATIQUE DU THÈME TOUTES LES 20 SECONDES ---
+// --- 1. THÈME : bouton manuel (mémorisé), plus de changement automatique ---
 const body = document.body;
-
-// Les deux thèmes demandés
 const themes = [
-    { id: 'colorcode', name: 'ColorCode', starColor: 0xc084fc, lineColor: 0x635bff },
-    { id: 'darktech', name: 'Dark Tech', starColor: 0x00d2ff, lineColor: 0x0088ff }
+    { id: 'colorcode', starColor: 0xc084fc, lineColor: 0x635bff },
+    { id: 'darktech', starColor: 0x00d2ff, lineColor: 0x0088ff }
 ];
-
 let currentThemeIndex = 0;
+try { currentThemeIndex = Math.max(0, themes.findIndex(t => t.id === localStorage.getItem('theme'))); } catch (e) {}
 
-function switchThemeAutomatically() {
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    const selectedTheme = themes[currentThemeIndex];
-
-    body.setAttribute('data-theme', selectedTheme.id);
-
-    // Mise à jour dynamique des couleurs dans la scène Three.js
-    if (typeof starsMaterial !== 'undefined' && typeof lineMaterial !== 'undefined') {
-        starsMaterial.color.setHex(selectedTheme.starColor);
-        lineMaterial.color.setHex(selectedTheme.lineColor);
+function applyTheme(i) {
+    const t = themes[i];
+    body.setAttribute('data-theme', t.id);
+    if (typeof starsMaterial !== 'undefined') {
+        starsMaterial.color.setHex(t.starColor);
+        lineMaterial.color.setHex(t.lineColor);
     }
+    try { localStorage.setItem('theme', t.id); } catch (e) {}
 }
-
-// Timer qui bascule le thème toutes les 20 000 ms (20s)
-setInterval(switchThemeAutomatically, 20000);
+document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    applyTheme(currentThemeIndex);
+});
 
 // --- 2. SCÈNE THREE.JS : ESPACE, NEURONES, ÉTOILES ET CODE ---
 const canvas = document.getElementById('bg-3d');
@@ -50,7 +46,7 @@ for (let i = 0; i < starsCount * 3; i += 3) {
 starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
 
 const starsMaterial = new THREE.PointsMaterial({
-    color: themes[0].starColor,
+    color: themes[currentThemeIndex].starColor,
     size: 0.6,
     transparent: true,
     opacity: 0.8,
@@ -62,7 +58,7 @@ scene.add(starField);
 
 // --- FILAMENTS EN FORME DE RÉSEAU DE NEURONES (Nombre réduit à 8) ---
 const lineMaterial = new THREE.LineBasicMaterial({
-    color: themes[0].lineColor,
+    color: themes[currentThemeIndex].lineColor,
     transparent: true,
     opacity: 0.2 // Opacité légère
 });
@@ -161,8 +157,10 @@ document.addEventListener('mousemove', (e) => {
 
 let clock = new THREE.Clock();
 
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function animate() {
     requestAnimationFrame(animate);
+    if (document.hidden || reduceMotion) return; // économise batterie/CPU
     const elapsedTime = clock.getElapsedTime();
 
     starField.rotation.y = elapsedTime * 0.02;
@@ -187,6 +185,7 @@ function animate() {
     renderer.render(scene, camera);
 }
 animate();
+applyTheme(currentThemeIndex);
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -202,4 +201,37 @@ if (mobileMenu) {
     mobileMenu.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('active')));
 }
+
+
+// --- 3. PROJETS (données) + filtres par spécialité ---
+const projects = [
+    { t: "Transition éducative digitale", d: "Modèle d'enseignement numérique soutenu par un accompagnement intelligent par IA.", c: ["ia"], tags: ["IA", "EdTech"], icon: "fa-brain", g: "Transition-educative-digitale" },
+    { t: "Reconnaissance faciale : pointage universitaire", d: "Pointage automatique des présences avec caméras Hikvision, API FastAPI, MongoDB et stockage Cloudinary.", c: ["ia", "cyber"], tags: ["Hikvision", "FastAPI", "MongoDB"], img: "pointage.jpg", g: "Syst-me-de-Pointage-Intelligent-avec-cam-ras-Hikvision", f: 1 },
+    { t: "Automatisation en cybersécurité (desktop)", d: "Évaluation des risques, gestion des vulnérabilités, sécurité Wi-Fi, audit et génération de rapports.", c: ["cyber", "auto"], tags: ["Audit", "Wi-Fi", "Desktop"], img: "sec_sys.png", g: "Application-bireau-cybersecurite", f: 1 },
+    { t: "Gestion intelligente des déchets", d: "Optimisation de la collecte urbaine par IoT et IA pour réduire les coûts de ramassage.", c: ["iot", "ia", "auto"], tags: ["IoT", "IA"], img: "poubele2.png", g: "Systeme_Gestion_Intelligente_Dechets_FR_MG", f: 1 },
+    { t: "Adduction d'eau potable par pompe solaire", d: "Pompage automatisé piloté par interfaces web, mobile et logiciel de bureau.", c: ["iot", "auto"], tags: ["IoT", "Web", "Mobile"], img: "pompe.png", g: "Syst-me-automatis-d-adduction-d-eau-potable-par-pompe-solaire", f: 1 },
+    { t: "Sécurisation intelligente par reconnaissance faciale", d: "Contrôle d'accès avec interface web, IoT et OpenCV.", c: ["ia", "cyber", "iot"], tags: ["OpenCV", "Web", "IoT"], img: "recon_sec1.png", g: "Reconnaissance-Faciale-Web-interface_dernier_version" },
+    { t: "Anti-délestage automatique et connecté", d: "Basculement automatique de l'alimentation électrique avec ESP32.", c: ["iot", "auto"], tags: ["ESP32", "Automatisation"], img: "elec1.png", g: "Systeme_anti-delestage_automatique_et_connecte" },
+    { t: "Localisation et traçage pour élevage bovin", d: "Suivi des zébus par GPS et IoT avec cartographie.", c: ["iot"], tags: ["GPS", "IoT"], img: "omby1.png", g: "Syst-me-de-localisation-et-tra-age-pour-levage-bovin" },
+    { t: "Paiement automatique pour transports", d: "Paiement par Mobile Money et carte scannée.", c: ["auto"], tags: ["Mobile Money", "NFC"], img: "car2.png", g: "Des-projet-diferent" },
+    { t: "Parking intelligent à déroute IoT", d: "Guidage dynamique des véhicules avec effets lumineux Trix Colors.", c: ["iot", "auto"], tags: ["ESP32", "Web"], img: "in_route.png", g: "Systme_IoT_deroute_intelligente" }
+];
+const grid = document.getElementById('projects-grid');
+grid.innerHTML = projects.map(p => `
+<article class="project-card" data-cat="${p.c.join(' ')}">
+  <div class="card-media">${p.img ? `<img src="images/${p.img}" alt="${p.t}" class="real-img" loading="lazy">` : `<div class="media-fallback"><i class="fa-solid ${p.icon}"></i></div>`}${p.f ? '<span class="featured-badge">★ Projet phare</span>' : ''}</div>
+  <div class="project-info">
+    <h3>${p.t}</h3><p>${p.d}</p>
+    <div class="tags">${p.tags.map(x => `<span>${x}</span>`).join('')}</div>
+    <a href="https://github.com/fanantenana1/${p.g}" target="_blank" rel="noopener" class="project-link">Voir le code <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</article>`).join('');
+
+document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    grid.querySelectorAll('.project-card').forEach(c => { c.hidden = !(f === 'all' || c.dataset.cat.split(' ').includes(f)); });
+}));
