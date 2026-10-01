@@ -153,7 +153,7 @@ body {
 
 /* Nom : Non-justifié (Aligné à gauche) */
 .hero h1 {
-    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-size: clamp(1.2rem, 4.5vw, 3.5rem);
     font-weight: 800;
     line-height: 1.25;
     margin-bottom: 1rem;
