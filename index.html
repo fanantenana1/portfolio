@@ -74,7 +74,7 @@
         </section>
 
         <section id="projets" class="section">
-            <h2 class="section-title">Projets réalisés</h2>
+            <h2 class="section-title">⚙️ Projets Réalisés & Prototypes</h2>
             <div class="filters" role="group" aria-label="Filtrer les projets">
                 <button class="filter-btn active" data-filter="all">Tous</button>
                 <button class="filter-btn" data-filter="ia">IA</button>
@@ -82,7 +82,159 @@
                 <button class="filter-btn" data-filter="iot">IoT</button>
                 <button class="filter-btn" data-filter="cyber">Cybersécurité</button>
             </div>
-            <div class="projects-grid" id="projects-grid"></div>
+            <div class="projects-grid" id="projects-grid">
+            <article class="project-card" data-cat="ia">
+                <div class="card-media">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80"
+                        alt="Transition éducative digitale" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-brain brain-pulse"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Transition éducative digitale</h3>
+                    <p>Transformer l'enseignement vers un modèle numérique innovant, soutenu par un accompagnement
+                        intelligent par IA.</p>
+                    <div class="tags"><span>IA</span><span>EdTech</span></div>
+                    <a href="https://github.com/fanantenana1/Transition-educative-digitale.git" target="_blank"
+                        class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="iot ia auto">
+                <div class="card-media">
+                    <img src="images/poubele2.png" alt="Gestion des Déchets" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-city city-glow float-anim"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Système Intelligent de Gestion des Déchets</h3>
+                    <p>Optimisation de la collecte urbaine grâce à l'IoT et l'IA, pour réduire les coûts.</p>
+                    <div class="tags"><span>IoT</span><span>IA</span></div>
+                    <a href="https://github.com/fanantenana1/Systeme_Gestion_Intelligente_Dechets_FR_MG.git"
+                        target="_blank" class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="cyber auto">
+                <div class="card-media">
+                    <img src="images/sec_sys.png" alt="Cybersécurité Desktop" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-shield-halved shield-pulse"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Application desktop d'automatisation en cybersécurité</h3>
+                    <p>Évaluation des risques, gestion de vulnérabilités, sécurité réseau Wi-Fi, audit et rapports.</p>
+                    <div class="tags"><span>Desktop</span><span>Wi-Fi</span></div>
+                    <a href="https://github.com/fanantenana1/Application-bireau-cybersecurite.git" target="_blank"
+                        class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="ia cyber">
+                <div class="card-media">
+                    <img src="images/pointage.jpg" alt="Pointage Universitaire" class="real-img" loading="lazy">
+                    <div class="media-overlay">
+                        <div class="face-target">
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Système de pointage universitaire par reconnaissance faciale</h3>
+                    <p>Caméras Hikvision, backend FastAPI, base de données MongoDB, stockage cloud Cloudinary.</p>
+                    <div class="tags"><span>Hikvision</span><span>FastAPI</span></div>
+                    <a href="https://github.com/fanantenana1/Syst-me-de-Pointage-Intelligent-avec-cam-ras-Hikvision.git"
+                        target="_blank" class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="iot auto">
+                <div class="card-media">
+                    <img src="images/pompe.png" alt="Pompe Solaire" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-faucet-drip float-anim"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Système automatisé d'adduction d'eau potable par pompe solaire</h3>
+                    <p>Interfaces web, mobile et logiciel de bureau pour la gestion du pompage.</p>
+                    <div class="tags"><span>Pompe Solaire</span><span>Web & Mobile & logiciel</span></div>
+                    <a href="https://github.com/fanantenana1/Syst-me-automatis-d-adduction-d-eau-potable-par-pompe-solaire.git"
+                        target="_blank" class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="ia cyber iot">
+                <div class="card-media">
+                    <img src="images/recon_sec1.png" alt="Sécurisation OpenCV" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-lock float-anim"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Système de sécurisation intelligent avec reconnaissance faciale</h3>
+                    <p>Web, IoT, OpenCV.</p>
+                    <div class="tags"><span>Web</span><span>IoT</span><span>OpenCV</span></div>
+                    <a href="https://github.com/fanantenana1/Reconnaissance-Faciale-Web-interface_dernier_version.git"
+                        target="_blank" class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="iot">
+                <div class="card-media">
+                    <img src="images/omby1.png" alt="Élevage Bovin" class="real-img" loading="lazy">
+                    <div class="media-overlay">
+                        <div class="gps-overlay">
+                            <i class="fa-solid fa-location-dot pin-bounce"></i>
+                            <div class="ping-circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Système de localisation et traçage pour élevage bovin</h3>
+                    <p>GPS, IoT, cartographie.</p>
+                    <div class="tags"><span>GPS</span><span>IoT</span></div>
+                    <a href="https://github.com/fanantenana1/Syst-me-de-localisation-et-tra-age-pour-levage-bovin.git"
+                        target="_blank" class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="auto">
+                <div class="card-media">
+                    <img src="images/car2.png" alt="Paiement Transports" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-credit-card float-anim pulse-anim"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Système de paiement automatique pour transports</h3>
+                    <p>Mobile Money et carte scanner.</p>
+                    <div class="tags"><span>Mobile Money</span><span>NFC</span></div>
+                    <a href="https://github.com/fanantenana1/Des-projet-diferent.git" target="_blank"
+                        class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="project-card" data-cat="iot auto">
+                <div class="card-media">
+                    <img src="images/elec1.png" alt="Anti-Délestage" class="real-img" loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-bolt bolt-flash"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Système anti-délestage automatique et connecté</h3>
+                    <p>IoT, ESP32, automatisation.</p>
+                    <div class="tags"><span>IoT</span><span>ESP32</span></div>
+                    <a href="https://github.com/fanantenana1/Systeme_anti-delestage_automatique_et_connecte.git"
+                        target="_blank" class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="project-card" data-cat="iot auto">
+                <div class="card-media">
+                    <img src="images/in_route.png" alt="Parking Intelligent Trix Colors" class="real-img"
+                        loading="lazy">
+                    <div class="media-overlay"><i class="fa-solid fa-square-parking float-anim pulse-anim"></i></div>
+                </div>
+                <div class="project-info">
+                    <h3>Système IoT de déroute intelligente pour parking avec effets visuels Trix Colors</h3>
+                    <p>IoT, ESP32, automatisation.</p>
+                    <div class="tags"><span>Web</span><span>IoT</span><span>ESP32</span></div>
+                    <a href="https://github.com/fanantenana1/Systme_IoT_deroute_intelligente.git" target="_blank"
+                        class="project-link">Voir sur GitHub <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+        
+            </div>
             <p style="margin-top:2rem"><a class="project-link" href="https://github.com/fanantenana1" target="_blank" rel="noopener">Tous mes dépôts sur GitHub <i class="fa-solid fa-arrow-right"></i></a></p>
         </section>
 

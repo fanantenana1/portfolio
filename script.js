@@ -205,30 +205,8 @@ if (mobileMenu) {
 }
 
 
-// --- 3. PROJETS (données) + filtres par spécialité ---
-const projects = [
-    { t: "Transition éducative digitale", d: "Modèle d'enseignement numérique soutenu par un accompagnement intelligent par IA.", c: ["ia"], tags: ["IA", "EdTech"], icon: "fa-brain", g: "Transition-educative-digitale" },
-    { t: "Reconnaissance faciale : pointage universitaire", d: "Pointage automatique des présences avec caméras Hikvision, API FastAPI, MongoDB et stockage Cloudinary.", c: ["ia", "cyber"], tags: ["Hikvision", "FastAPI", "MongoDB"], img: "pointage.jpg", g: "Syst-me-de-Pointage-Intelligent-avec-cam-ras-Hikvision", f: 1 },
-    { t: "Automatisation en cybersécurité (desktop)", d: "Évaluation des risques, gestion des vulnérabilités, sécurité Wi-Fi, audit et génération de rapports.", c: ["cyber", "auto"], tags: ["Audit", "Wi-Fi", "Desktop"], img: "sec_sys.png", g: "Application-bireau-cybersecurite", f: 1 },
-    { t: "Gestion intelligente des déchets", d: "Optimisation de la collecte urbaine par IoT et IA pour réduire les coûts de ramassage.", c: ["iot", "ia", "auto"], tags: ["IoT", "IA"], img: "poubele2.png", g: "Systeme_Gestion_Intelligente_Dechets_FR_MG", f: 1 },
-    { t: "Adduction d'eau potable par pompe solaire", d: "Pompage automatisé piloté par interfaces web, mobile et logiciel de bureau.", c: ["iot", "auto"], tags: ["IoT", "Web", "Mobile"], img: "pompe.png", g: "Syst-me-automatis-d-adduction-d-eau-potable-par-pompe-solaire", f: 1 },
-    { t: "Sécurisation intelligente par reconnaissance faciale", d: "Contrôle d'accès avec interface web, IoT et OpenCV.", c: ["ia", "cyber", "iot"], tags: ["OpenCV", "Web", "IoT"], img: "recon_sec1.png", g: "Reconnaissance-Faciale-Web-interface_dernier_version" },
-    { t: "Anti-délestage automatique et connecté", d: "Basculement automatique de l'alimentation électrique avec ESP32.", c: ["iot", "auto"], tags: ["ESP32", "Automatisation"], img: "elec1.png", g: "Systeme_anti-delestage_automatique_et_connecte" },
-    { t: "Localisation et traçage pour élevage bovin", d: "Suivi des zébus par GPS et IoT avec cartographie.", c: ["iot"], tags: ["GPS", "IoT"], img: "omby1.png", g: "Syst-me-de-localisation-et-tra-age-pour-levage-bovin" },
-    { t: "Paiement automatique pour transports", d: "Paiement par Mobile Money et carte scannée.", c: ["auto"], tags: ["Mobile Money", "NFC"], img: "car2.png", g: "Des-projet-diferent" },
-    { t: "Parking intelligent à déroute IoT", d: "Guidage dynamique des véhicules avec effets lumineux Trix Colors.", c: ["iot", "auto"], tags: ["ESP32", "Web"], img: "in_route.png", g: "Systme_IoT_deroute_intelligente" }
-];
+// --- 3. Filtres des projets par spécialité ---
 const grid = document.getElementById('projects-grid');
-grid.innerHTML = projects.map(p => `
-<article class="project-card" data-cat="${p.c.join(' ')}">
-  <div class="card-media">${p.img ? `<img src="images/${p.img}" alt="${p.t}" class="real-img" loading="lazy">` : `<div class="media-fallback"><i class="fa-solid ${p.icon}"></i></div>`}${p.f ? '<span class="featured-badge">★ Projet phare</span>' : ''}</div>
-  <div class="project-info">
-    <h3>${p.t}</h3><p>${p.d}</p>
-    <div class="tags">${p.tags.map(x => `<span>${x}</span>`).join('')}</div>
-    <a href="https://github.com/fanantenana1/${p.g}" target="_blank" rel="noopener" class="project-link">Voir le code <i class="fa-solid fa-arrow-right"></i></a>
-  </div>
-</article>`).join('');
-
 document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
